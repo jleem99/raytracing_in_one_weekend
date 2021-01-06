@@ -1,3 +1,9 @@
+# Executable
+raytracing_in_one_weekend
+
+# Image files
+*.ppm
+
 # Prerequisites
 *.d
 
