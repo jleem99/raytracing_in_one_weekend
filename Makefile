@@ -6,7 +6,7 @@
 #    By: jleem <jleem@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 14:15:16 by jleem             #+#    #+#              #
-#    Updated: 2021/01/06 17:17:18 by jleem            ###   ########.fr        #
+#    Updated: 2021/01/06 17:32:32 by jleem            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCDIR		= srcs/
 INCDIR		= includes/
 
 SRCS		= $(wildcard $(SRCDIR)*.cpp)
-SRCS		+= main.c
+SRCS		+= main.cpp
 OBJS		= $(SRCS:.c=.o)
 
 NAME		= raytracing_in_one_weekend
