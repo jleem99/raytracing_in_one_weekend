@@ -51,6 +51,12 @@ class vec3
 			return (e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
 		}
 
+		vec3			unit() const
+		{
+			vec3	unit_vector(vec3 v);
+			return (unit_vector(*this));
+		}
+
 	public:
 		double			e[3];
 };
