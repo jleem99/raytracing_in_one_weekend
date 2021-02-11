@@ -6,7 +6,7 @@
 /*   By: jleem <jleem@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 17:05:07 by jleem             #+#    #+#             */
-/*   Updated: 2021/02/11 18:57:22 by jleem            ###   ########.fr       */
+/*   Updated: 2021/02/11 18:58:26 by jleem            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 #include "camera.h"
 
 #include <iostream>
-#include "thread.h"
 
-color	ray_color(const ray &r, const hittable &world)
+color ray_color(const ray &r, const hittable &world)
 {
 	hit_record rec;
 	if (world.hit(r, 0, infinity, rec))
@@ -33,13 +32,13 @@ color	ray_color(const ray &r, const hittable &world)
 	return (1.0 - t) * color(0.784, 0.635, 0.784) + t * color(0.784, 0.635, 0.784);
 }
 
-int		main(void)
+int main()
 {
 	// Image
 	const auto aspect_ratio = 16.0 / 9.0;
 	const int image_width = 400;
 	const int image_height = static_cast<int>(image_width / aspect_ratio);
-	const int ssaa_multiplier = 4;
+	const int ssaa_multiplier = 10;
 	const int samples_per_pixel = ssaa_multiplier * ssaa_multiplier;
 
 	// World
@@ -60,7 +59,7 @@ int		main(void)
 
 		for (int i = 0; i < image_width; ++i)
 		{
-			c_runner runner(samples_per_pixel, ray_color);
+			color pixel_color(0, 0, 0);
 			for (int s = 0; s < samples_per_pixel; ++s)
 			{
 				auto ssaa_i = s / ssaa_multiplier;
@@ -70,9 +69,9 @@ int		main(void)
 				// auto u = (i + random_double()) / (image_width-1);
 				// auto v = (j + random_double()) / (image_height-1);
 				ray r = cam.get_ray(u, v);
-				runner.create(r, world);
+				pixel_color += ray_color(r, world);
 			}
-			write_color(std::cout, runner.join(), samples_per_pixel);
+			write_color(std::cout, pixel_color, samples_per_pixel);
 		}
 	}
 

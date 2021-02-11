@@ -6,7 +6,7 @@
 #    By: jleem <jleem@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/06 14:15:16 by jleem             #+#    #+#              #
-#    Updated: 2021/02/11 18:52:38 by jleem            ###   ########.fr        #
+#    Updated: 2021/02/11 18:58:59 by jleem            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ fclean		: clean
 
 re			: fclean all
 
-test		: fclean all
+test		: all
 	./$(NAME) > test.ppm
 	./../ppm-viewer/ppm-viewer test.ppm
 
